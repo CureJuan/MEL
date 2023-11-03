@@ -1,0 +1,15 @@
+export enum TypeOfActivityeNUM {
+  OT_VC = 'Online Training (Virtual Campus)',
+  OT_OTHER = 'Online Training (Other)',
+  BT_VC = 'Blended Training (Virtual Campus)',
+  BT_OTHER = 'Blended Training (Other)',
+  ONSITE = 'Onsite Training',
+  TOT_VC = 'Online TOT (Virtual Campus)',
+  TOT_OTHER = 'Online TOT (Other)',
+  BTOT_VC = 'Blended TOT (Virtual Campus)',
+  BTOT_OTHER = 'Blended TOT (Other)',
+  TOT = 'Onsite TOT',
+  WEBINAR = 'Webinar',
+  CS = 'Case Study',
+  MATERIAL = 'Material Dev/Rev',
+}

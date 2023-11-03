@@ -1,0 +1,132 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Invoice</title>
+</head>
+<style>
+    table, td, th {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    .info {
+       margin: 80px 30px 10px 20px;
+       padding: 15px; 
+       width:90%;
+    }
+
+    .price-and-qty {
+       margin: 40px 30px 10px 20px;
+       padding: 15px; 
+       width:90%;
+    }
+
+    .info-body, .price-and-qty-body {
+        text-align: center;
+    }
+
+    .grid-container{
+        display: grid;
+        grid: 150px / auto auto;
+    }
+
+    .general-info {
+        margin: 10px 10px;
+        padding: 10px;
+        text-align: left;
+        width: auto;
+    }
+
+    .invoice-to { 
+        margin: 10px 10px;
+        padding: 10px;
+        text-align: left;
+        width: auto;
+    }
+
+    .footer {
+        margin: 30px 20px;
+        padding: 15px;
+        text-align: left;
+    }
+
+</style>
+<body bgcolor="#f7f7f7">
+    <h1 align="center">INVOICE</h1>
+        <div class="grid-container">
+            <div class="general-info">
+                <p><b>Name :</b> {{name}}</p>
+                <p><b>Address :</b> {{address}}</p>
+                <p><b>Date :</b>{{createdAt}}</p>
+                <p><b>Invoice Number :</b> {{invoice.invoiceNumber}}</p>
+            </div>
+            <div class="invoice-to">
+                <p><b>To : Themba Gumbo </b></p>
+                <p>GWP Global Secretariat PO Box 24177 </p>
+                <p>SE-104 51 Stockholm, Sweden +46 8 1213 86 40</p>
+                <p>Sonia.luz@cap-net.org</p>
+            </div>
+        </div>
+        <table class="info">
+            <thead class="info-head">
+                <tr>
+                    <th>Host Institute/ Supplier</th>
+                    <th>Type of payment</th>
+                    <th>Payment terms</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tbody class="info-body">
+                <tr>
+                    <td>{{invoice.hostInstitute}}</td>
+                    <td>{{invoice.typeOfPayment}}</td>
+                    <td>{{invoice.paymentTerms}}</td>
+                    <td>{{invoice.dueDate}}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table class="price-and-qty ">
+            <thead>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Description</th>
+                    <th>Unit Price</th>
+                    <th>Line Total</th>
+                </tr>
+            </thead>
+            <tbody class="price-and-qty-body">
+                {{#each invoice.priceAndQtyArray as | data |}}
+                <tr>
+                    <td>{{data.qty}}</td>
+                    <td>{{data.description}}</td>
+                    <td>{{data.unitPrice}}</td>
+                    <td>{{data.lineTotal}}</td>
+                </tr>
+                {{/each}}
+                <tr>
+                    <td colspan="2"><b>Total</b></td>
+                    <td>{{invoice.totalOfUnitPrice}}</td>
+                    <td>{{invoice.totalOfLineTotal}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <p>
+                Payable within <b>25 days of receipt</b> thru the bank details provided below:
+            </p>
+            <p><b>Account name: </b>{{bankAccountName}}</p>
+            <p><b>Bank account no./IBAN: </b> {{invoice.bankAccountNumber}}</p>
+            <p><b>Bank address: </b>{{bankAddress}}</p>
+            <p><b>Swift Code: </b>{{invoice.swiftCode}}</p>
+            <p><b>Email address: </b>{{invoice.emailAddress}}</p>
+            <p style="text-align:center;"><b>Thank you for the business!</b></p>
+        </div>
+</body>
+
+</html>
